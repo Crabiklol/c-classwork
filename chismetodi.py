@@ -64,12 +64,12 @@ e = b_1 + c_1
 f = e/abs(d)
 
 g = math.sqrt(d)
-h = 
-i =
+i = 0.5 * f
+h = i * abs(g)
 
 j = math.log(a)
-k =
-l =
+k = 
+l = 
 
 m = j + b
 n = (k - b_1)
