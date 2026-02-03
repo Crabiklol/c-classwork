@@ -305,3 +305,191 @@ int main() {
     return 0;
 }
 
+//11
+#include <iostream>
+using namespace std;
+
+
+int sumArray(int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+double sumArray(double arr[], int size) {
+    double sum = 0.0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int intArr[] = { 1, 2, 3, 4, 5 };
+    int intSize = 5;
+
+   
+    double doubleArr[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+    int doubleSize = 5;
+
+    
+    cout << "Сумма int-массива: " << sumArray(intArr, intSize) << endl;
+    cout << "Сумма double-массива: " << sumArray(doubleArr, doubleSize) << endl;
+
+    return 0;
+}
+
+//12
+
+#include <iostream>
+#include <climits>  
+using namespace std;
+
+
+int findMax(int arr[10]) {
+    int maxVal = arr[0];  
+    for (int i = 1; i < 10; i++) {
+        if (arr[i] > maxVal) {
+            maxVal = arr[i];
+        }
+    }
+    return maxVal;
+}
+
+
+int findMax(int arr[], int size) {
+    if (size <= 0) {
+        throw invalid_argument("Размер массива должен быть > 0");
+    }
+
+    int maxVal = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > maxVal) {
+            maxVal = arr[i];
+        }
+    }
+    return maxVal;
+}
+
+
+int main() {
+    
+    int arr10[] = { 3, 7, 1, 9, 4, 8, 2, 6, 5, 0 };
+
+ 
+    int arrN[] = { 15, 3, 22, 8, 11, 5, 19 };
+    int sizeN = 7;
+
+   
+    cout << "Максимум в массиве из 10 элементов: " << findMax(arr1 Newton) << endl;
+    cout << "Максимум в массиве из " << sizeN << " элементов: "
+        << findMax(arrN, sizeN) << endl;
+
+    return 0;
+}
+//13
+#include <iostream>
+using namespace std;
+
+
+int countPositive(int arr[], int size) {
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] > 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+int countPositive(int arr[][100], int rows, int cols) {
+    
+    int count = 0;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] > 0) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int arr1D[] = { -3, 5, 0, 8, -1, 4 };
+    int size1D = 6;
+
+    
+    int arr2D[3][100] = {
+        {-2,  7, -1,  3},
+        { 0, -4,  6, -8},
+        { 5, -9,  2,  1}
+    };
+    int rows = 3, cols = 4;
+
+   
+    cout << "Положительных в одномерном массиве: "
+        << countPositive(arr1D, size1D) << endl;
+
+    cout << "Положительных в двумерном массиве: "
+        << countPositive(arr2D, rows, cols) << endl;
+
+    return 0;
+}
+
+//14
+#include <iostream>
+#include <iomanip>  
+using namespace std;
+
+
+void print(const int arr[], int size) {
+    cout << "Целочисленный массив: ";
+    for (int i = 0; i < size; i++) {
+        cout << arr[i];
+        if (i < size - 1) {
+            cout << " ";  
+        }
+    }
+    cout << endl;
+}
+
+
+void print(const double arr[], int size) {
+    cout << "Вещественный массив: ";
+    cout << fixed << setprecision(2); 
+    for (int i = 0; i < size; i++) {
+        cout << arr[i];
+        if (i < size - 1) {
+            cout << " ";
+        }
+    }
+    cout << endl;
+    cout.unsetf(ios::fixed);  
+}
+
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int intArr[] = { 1, -5, 10, 0, 7 };
+    int intSize = 5;
+
+   
+    double doubleArr[] = { 3.14, -2.5, 0.0, 7.891, -1.234 };
+    int doubleSize = 5;
+
+    
+    print(intArr, intSize);
+    print(doubleArr, doubleSize);
+
+    return 0;
+}
+
+//15
