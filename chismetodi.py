@@ -63,8 +63,8 @@ abs_des_1 = abs_2 + abs_3
 otn_des_1 = abs_des_1/abs(des_1)
 
 des_2 = math.sqrt(des_1)
-abs_des_2 = 0.5 * otn_des_1
-otn_des_2 = abs_des_2 / abs(des_2)
+otn_des_2 = 0.5 * otn_des_1
+abs_des_2 = otn_des_2 * des_2
 
 des_3 = math.log(a)
 #"производная логарифма"
@@ -73,7 +73,7 @@ def ln_derivative(des_3):
         return "x > 0"
     return 1 / des_3
 
-abs_des_3 = abs(ln_derivative(des_3)) * abs_1
+abs_des_3 = abs(ln_derivative(a)) * abs_1
 otn_des_3 = abs_des_3 / abs(des_3)
 
 des_4 = des_3 + b
@@ -81,7 +81,6 @@ abs_des_4 = abs_des_3 + abs_3
 otn_des_4 = abs_des_4 / abs(des_4)
 
 des_5 = des_2 / des_4
-abs_des_5 =
-
-
+otn_des_5 = otn_des_2 + otn_des_4
+abs_des_5 = otn_des_5 * des_5
 
