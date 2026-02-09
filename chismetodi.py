@@ -1,4 +1,5 @@
 import math
+
 #задание 1
 #8 a)
 
@@ -49,44 +50,38 @@ a = 18.0354
 b = 3.7251
 c = 0.071
 
+abs_1 = 0.0001
+abs_2 = 0.0001
+abs_3 = 0.001
+
+otn_1 = abs_1 / abs(a)
+otn_2 = abs_2 / abs(b)
+otn_3 = abs_3 / abs(c)
+
+des_1 = (b - c)
+abs_des_1 = abs_2 + abs_3
+otn_des_1 = abs_des_1/abs(des_1)
+
+des_2 = math.sqrt(des_1)
+abs_des_2 = 0.5 * otn_des_1
+otn_des_2 = abs_des_2 / abs(des_2)
+
+des_3 = math.log(a)
+#"производная логарифма"
+def ln_derivative(des_3):
+    if des_3 <= 0:
+        return "x > 0"
+    return 1 / des_3
+
+abs_des_3 = abs(ln_derivative(des_3)) * abs_1
+otn_des_3 = abs_des_3 / abs(des_3)
+
+des_4 = des_3 + b
+abs_des_4 = abs_des_3 + abs_3
+otn_des_4 = abs_des_4 / abs(des_4)
+
+des_5 = des_2 / des_4
+abs_des_5 =
 
 
-a_1 = 0.0001
-b_1 = 0.0001
-c_1 = 0.001
 
-a_2 = a_1 / abs(a)
-b_2 = b_1 / abs(b)
-c_2 = c_1 / abs(c)
-
-d = (b - c)
-e = b_1 + c_1
-f = e/abs(d)
-
-g = math.sqrt(d)
-i = 0.5 * f
-h = i * abs(g)
-
-j = math.log(a)
-k = 
-l = 
-
-m = j + b
-n = (k - b_1)
-o = n / abs(m)
-
-p =
-q =
-r =
-
-s =
-t =
-v =
-
-w =
-x =
-y =
-
-z =
-
-print()
