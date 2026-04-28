@@ -101,47 +101,47 @@ class Vector
     public int X { get; set; }
     public int Y { get; set; }
 
-    public Vector(int x, int y) => (X, Y) = (x, y);
-
-    // Перегрузка сложения
-    public static Vector operator +(Vector left, Vector right) =>
-        new Vector(left.X + right.X, left.Y + right.Y);
-
-    // Перегрузка ==
-    public static bool operator ==(Vector left, Vector right)
+    public Vector(int x, int y)
     {
-        if (ReferenceEquals(left, right)) return true;
-        if (left is null || right is null) return false;
-        return left.X == right.X && left.Y == right.Y;
+        X = x;
+        Y = y;
     }
 
-    // Перегрузка !=
-    public static bool operator !=(Vector left, Vector right) => !(left == right);
+    public static Vector operator +(Vector a, Vector b)
+    {
+        return new Vector(a.X + b.X, a.Y + b.Y);
+    }
 
-    // Рекомендовано при перегрузке ==/!=
-    public override bool Equals(object obj) => obj is Vector v && this == v;
-    public override int GetHashCode() => HashCode.Combine(X, Y);
+    public static bool operator ==(Vector a, Vector b)
+    {
+        return a.X == b.X && a.Y == b.Y;
+    }
 
-    public override string ToString() => $"Vector({X}, {Y})";
+    public static bool operator !=(Vector a, Vector b)
+    {
+        return !(a == b);
+    }
 }
 
 class Program
 {
     static void Main()
     {
-        var v1 = new Vector(3, 4);
-        var v2 = new Vector(1, 2);
+    
+        Vector v1 = new Vector(2, 3);
+        Vector v2 = new Vector(4, 5);
 
+      
         Vector sum = v1 + v2;
-        Console.WriteLine($"Сумма: {sum}"); 
+        Console.WriteLine($"v1 + v2 = ({sum.X}, {sum.Y})");
 
-        Console.WriteLine($"v1 == v2: {v1 == v2}"); 
-        Console.WriteLine($"v1 != v2: {v1 != v2}"); 
-
-        var v3 = new Vector(3, 4);
-        Console.WriteLine($"v1 == v3: {v1 == v3}"); 
+     
+        Console.WriteLine($"v1 == v2: {v1 == v2}");
+        Console.WriteLine($"v1 != v2: {v1 != v2}");
     }
 }
+
+
 
 Задание 2
 using System;
@@ -158,47 +158,47 @@ class Program
 {
     static void Main()
     {
-        List<Order> orders = new()
+        
+        List<Order> orders = new List<Order>
         {
-            new Order { Id = 1, Price = 50.0 },
-            new Order { Id = 2, Price = 150.0 },
-            new Order { Id = 3, Price = 200.0 },
-            new Order { Id = 4, Price = 80.0 },
-            new Order { Id = 5, Price = 300.0 }
+            new Order { Id = 1, Price = 80 },
+            new Order { Id = 2, Price = 150 },
+            new Order { Id = 3, Price = 90 },
+            new Order { Id = 4, Price = 200 },
+            new Order { Id = 5, Price = 110 }
         };
 
-        // 1. Обработка пустой коллекции (дополнительно)
-        if (!orders.Any())
-        {
-            Console.WriteLine("Коллекция заказов пуста.");
-            return;
-        }
+       
+        double total = orders.Sum(o => o.Price);
+        Console.WriteLine($"Сумма всех заказов: {total}");
 
-        // 2. Агрегация
-        double totalSum = orders.Sum(o => o.Price);
+        
         double maxPrice = orders.Max(o => o.Price);
-        double minPrice = orders.Min(o => o.Price);
+        Console.WriteLine($"Максимальная цена: {maxPrice}");
+
+        
+        Order minOrder = orders.First(o => o.Price == orders.Min(x => x.Price));
+        Console.WriteLine($"Заказ с минимальной ценой: Id={minOrder.Id}, Price={minOrder.Price}");
+
+        
         int countOver100 = orders.Count(o => o.Price > 100);
+        Console.WriteLine($"Количество заказов дороже 100: {countOver100}");
 
-        Console.WriteLine($" Сумма заказов: {totalSum:F2}");
-        Console.WriteLine($" Макс. цена: {maxPrice:F2}");
-        Console.WriteLine($" Мин. цена: {minPrice:F2}");
-        Console.WriteLine($" Заказов > 100: {countOver100}");
+       
+        Console.WriteLine("\nГруппировка по диапазонам цен:");
+        var groups = orders.GroupBy(o =>
+            o.Price < 100 ? "До 100" :
+            o.Price <= 200 ? "100–200" : "Больше 200");
 
-        // 3. Дополнительно: группировка по диапазонам цен
-        var groupedByRange = orders.GroupBy(o => o.Price switch
+        foreach (var group in groups)
         {
-            < 100 => "Дешёвые (<100₽)",
-            < 200 => "Средние (100-199₽)",
-            _ => "Премиум (200₽+)"
-        });
-
-        Console.WriteLine("\n Группировка по диапазонам цен:");
-        foreach (var group in groupedByRange)
-        {
-            double groupSum = group.Sum(x => x.Price);
-            Console.WriteLine($"  {group.Key}: {group.Count()} шт. | Сумма: {groupSum:F2}₽");
+            Console.WriteLine($"{group.Key}: {group.Count()} заказов");
         }
+
+        
+        List<Order> emptyOrders = new List<Order>();
+        double emptySum = emptyOrders.Sum(o => o.Price); 
+        Console.WriteLine($"\nСумма пустой коллекции: {emptySum}");
     }
 }
-                                                                                              
+
